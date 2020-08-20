@@ -126,22 +126,13 @@ todo_include_todos = False
 # Пока закомментирую рабочий вариант:
 #html_theme = 'sphinx_rtd_theme'
 
-import os
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+html_theme = 'sphinx_rtd_theme'
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
-  import sphinx_rtd_theme
-  html_theme = 'sphinx_rtd_theme'
-  html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-else:
-  html_context = { 
-    'css_files': [
-        'https://media.readthedocs.org/css/sphinx_rtd_theme.css',
-        'https://media.readthedocs.org/css/readthedocs-doc-embed.css',
-        '_static/theme_overrides.css',
-    ],
-}
-
+def setup(app):
+    app.add_stylesheet('contentui.css')
+    app.add_javascript('contentui.js')
+    
+    
 # попробуем добавить чтение кастомного джеес
 # def setup(app):
 #     app.add_javascript('_static/contentui.js')
